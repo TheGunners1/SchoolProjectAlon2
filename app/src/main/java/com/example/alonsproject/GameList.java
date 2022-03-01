@@ -9,10 +9,7 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
-
-
-
+public class GameList extends AppCompatActivity {
     ListView lv;
     ArrayList<Game> GameList;
     GameAdapter carAdapter;
@@ -40,4 +37,5 @@ public class MainActivity extends AppCompatActivity {
         lv=(ListView)findViewById(R.id.games_queue_lst);
         lv.setAdapter(carAdapter);
     }
+
 }

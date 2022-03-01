@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         etLastName = findViewById(R.id.etLastName);
         etUsernameS= findViewById(R.id.etUserNameS);
         etEmail = findViewById(R.id.etEmail);
-        etPasswordS = findViewById(R.id.etPasswordS);
+        etPasswordS = findViewById( R.id.etPasswordS);
         btnAddImage = findViewById(R.id.btnAddImage);
         btnSignUp = findViewById(R.id.btnSignUp);
         btnLogInS   = findViewById(R.id.btnLogInS);
