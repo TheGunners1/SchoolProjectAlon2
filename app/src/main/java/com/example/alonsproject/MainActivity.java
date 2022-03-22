@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     EditText etFirstName, etLastName,etUsernameS, etEmail, etPasswordS;
     Button btnSignUp, btnAddImage, btnLogInS;
     ImageView ivImage;
-    SharedPreferences sp;
+    ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,19 +49,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnLogInS.setOnClickListener(this);
 
         mAuth = FirebaseAuth.getInstance();
+        progressDialog = new ProgressDialog(this);
 
     }
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnSignUp:
-                Toast.makeText(this, "Singing Up", Toast.LENGTH_SHORT).show();
+                progressDialog.setMessage("Signing up...");
+                progressDialog.show();
+                String email = etEmail.getText().toString();
+                String password = etPasswordS.getText().toString();
+                mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(
+                        this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if(task.isSuccessful()) {
+                                Intent gameListIntent = new Intent(MainActivity.this, GameList.class);;
+                                startActivity(gameListIntent);
+                            }
+                            else {
+                                progressDialog.dismiss();
+                                Toast.makeText(MainActivity.this, "Registration Error", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                });
                 break;
             case R.id.btnAddImage:
                 break;
             case R.id.btnLogInS:
-                Intent FirstIntent = new Intent(MainActivity.this, LoginActivity.class);
-                startActivity(FirstIntent);
+                Intent loginIntent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(loginIntent);
                 break;
             default:
                 break;
@@ -74,7 +92,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         // Check if user is signed in (non-null) and update UI accordingly.
         currentUser = mAuth.getCurrentUser();
-
+        if(currentUser != null) { // Already logged in
+            Intent gameListIntent = new Intent(MainActivity.this, GameList.class);
+            startActivity(gameListIntent);
+        }
 
     }//end onStart
 }

@@ -9,10 +9,15 @@
         <entry key="..\:/Users/Student/AndroidStudioProjects/AlonsProject2/app/src/main/res/layout/activity_main.xml" value="0.17760416666666667" />
         <entry key="..\:/Users/Student/AndroidStudioProjects/AlonsProject2/app/src/main/res/layout/gamesentry.xml" value="0.17760416666666667" />
         <entry key="..\:/Users/Student/AndroidStudioProjects/AlonsProject2/app/src/main/res/layout/login_dialog.xml" value="0.2723076923076923" />
+        <entry key="..\:/Users/Student/AndroidStudioProjects/SchoolProjectAlon2/app/src/main/res/layout/activity_event.xml" value="0.17760416666666667" />
+        <entry key="..\:/Users/Student/AndroidStudioProjects/SchoolProjectAlon2/app/src/main/res/layout/activity_games_list.xml" value="0.25" />
+        <entry key="..\:/Users/Student/AndroidStudioProjects/SchoolProjectAlon2/app/src/main/res/layout/activity_login.xml" value="0.17760416666666667" />
+        <entry key="..\:/Users/Student/AndroidStudioProjects/SchoolProjectAlon2/app/src/main/res/layout/activity_main.xml" value="0.17760416666666667" />
+        <entry key="..\:/Users/Student/AndroidStudioProjects/SchoolProjectAlon2/app/src/main/res/layout/gamesentry.xml" value="0.17760416666666667" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

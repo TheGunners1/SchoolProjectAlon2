@@ -2,23 +2,38 @@ package com.example.alonsproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.metrics.Event;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 
-public class GameList extends AppCompatActivity {
+public class GameList extends AppCompatActivity implements View.OnClickListener {
     ListView lv;
     ArrayList<Game> GameList;
     GameAdapter carAdapter;
+    Button btnNewGame, btnLogOut;
+    FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_games_list);
         lv = (ListView) findViewById(R.id.games_queue_lst);
+        btnNewGame = findViewById(R.id.btnNewGame);
+        btnLogOut = findViewById(R.id.btnLogOut);
+
+        btnNewGame.setOnClickListener(this);
+        btnLogOut.setOnClickListener(this);
+        firebaseAuth = FirebaseAuth.getInstance();
+
         Bitmap Basketball = BitmapFactory.decodeResource(getResources(), R.drawable.basketball);
         Bitmap Football = BitmapFactory.decodeResource(getResources(), R.drawable.football);
         Bitmap Tennis = BitmapFactory.decodeResource(getResources(), R.drawable.tennis);
@@ -38,4 +53,17 @@ public class GameList extends AppCompatActivity {
         lv.setAdapter(carAdapter);
     }
 
+    public void onClick(View view) {
+        switch(view.getId()) {
+            case R.id.btnNewGame:
+                Intent newGameIntent = new Intent(GameList.this, EventActivity.class);
+                startActivity(newGameIntent);
+                break;
+            case R.id.btnLogOut:
+                firebaseAuth.signOut();
+                Intent logoutIntent = new Intent(GameList.this, MainActivity.class);
+                startActivity(logoutIntent);
+                break;
+        }
+    }
 }

@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AlonsProject" >
         <activity
-            android:name=".GamesList"
+            android:name=".GameList"
             android:exported="false" />
         <activity
             android:name=".EventActivity"
