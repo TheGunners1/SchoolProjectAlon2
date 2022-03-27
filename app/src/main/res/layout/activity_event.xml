@@ -32,7 +32,7 @@
                 android:textSize="35sp"
                 />
             <Spinner
-                android:id="@+id/SPNGame"
+                android:id="@+id/spnGame"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:background="@android:drawable/btn_dropdown"
@@ -61,24 +61,23 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+    <RadioGroup android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
         <RadioButton
+            android:id="@+id/rbCourt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="   Court"
             android:textSize="35sp"
             />
         <RadioButton
+            android:id="@+id/rbField"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="   Field"
             android:layout_marginLeft="75dp"
             android:textSize="35sp"
             />
-    </LinearLayout>
+    </RadioGroup>
 
     <LinearLayout
         android:layout_width="match_parent"
