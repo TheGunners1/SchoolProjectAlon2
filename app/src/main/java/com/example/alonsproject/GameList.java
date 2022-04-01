@@ -1,24 +1,31 @@
 package com.example.alonsproject;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.metrics.Event;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class GameList extends AppCompatActivity implements View.OnClickListener {
+public class GameList extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
     ListView lv;
-    ArrayList<Game> GameList;
-    GameAdapter carAdapter;
     Button btnNewGame, btnLogOut;
     FirebaseAuth firebaseAuth;
 
@@ -33,24 +40,36 @@ public class GameList extends AppCompatActivity implements View.OnClickListener 
         btnNewGame.setOnClickListener(this);
         btnLogOut.setOnClickListener(this);
         firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseDatabase.getInstance().getReference("Games").addValueEventListener(
+            new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-        Bitmap Basketball = BitmapFactory.decodeResource(getResources(), R.drawable.basketball);
-        Bitmap Football = BitmapFactory.decodeResource(getResources(), R.drawable.football);
-        Bitmap Tennis = BitmapFactory.decodeResource(getResources(), R.drawable.tennis);
-        Bitmap Volleyball = BitmapFactory.decodeResource(getResources(), R.drawable.volleyball);
+                    ArrayList<Game> GameList = new ArrayList<>();
+                    for(DataSnapshot data : dataSnapshot.getChildren())
+                    {
+                        Game p = data.getValue(Game.class);
+                        GameList.add(p);
+                    }
+                    // creates a virtual list of all games uploaded
 
-//        Game g1 = new Game("Basketball", "Dan", "12:00",Basketball);
-//        Game g2 = new Game("Football", "Dan", "8:30", Football);
-//        Game g3 = new Game("Tennis", "Dafna", "15:40",Tennis);
-//        Game g4 = new Game("Volleyball", "Snir", "17:15", Volleyball);
-//        GameList = new ArrayList<Game>();
-//        GameList.add(g1);
-//        GameList.add(g2);
-//        GameList.add(g3);
-//        GameList.add(g4);
-        carAdapter=new GameAdapter(this,0,0,GameList);
+                    GameAdapter gameAdapter = new GameAdapter(GameList.this,0,0, GameList);
+
+                    lv.setAdapter(gameAdapter);
+
+                    // creates a visible list on screen
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError)
+                {
+                    Toast.makeText(GameList.this, "Upload Error", Toast.LENGTH_LONG).show();
+                }
+        });
+
         lv=(ListView)findViewById(R.id.games_queue_lst);
-        lv.setAdapter(carAdapter);
+        lv.setOnItemClickListener(this);
+
     }
 
     public void onClick(View view) {
@@ -64,6 +83,41 @@ public class GameList extends AppCompatActivity implements View.OnClickListener 
                 Intent logoutIntent = new Intent(GameList.this, MainActivity.class);
                 startActivity(logoutIntent);
                 break;
+        }
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+    {
+        final Game game = (Game) lv.getItemAtPosition(position);
+        String uid = game.getUid();
+
+        if(false)//uid.equals(firebaseAuth.getUid()))
+        {
+            //CreateUserDialog(p);
+        }
+        else
+        {
+            Dialog dialog = new Dialog(this);
+            dialog.setCancelable(true);
+            dialog.setContentView(R.layout.poster);
+
+            TextView tvInvitationName = dialog.findViewById(R.id.tvInvitationName);
+            tvInvitationName.setText(game.getName() + " would like to invite you to a game of - ");
+
+            TextView tvInvitationGame = dialog.findViewById(R.id.tvInvitationGame);
+            tvInvitationGame.setText(game.getGameType());
+
+            TextView tvInvitationCourt = dialog.findViewById(R.id.tvInvitationCourt);
+            tvInvitationCourt.setText("They will be playing in " + game.getPlace() + ", on " + (game.getCourt() ? "court" : "field") + ".");
+
+            TextView tvInvitationPlayersNum = dialog.findViewById(R.id.tvInvitationPlayersNum);
+            tvInvitationPlayersNum.setText("There are currently " + game.getNum_players() + " players.");
+
+            TextView tvInvitationTime = dialog.findViewById(R.id.tvInvitationTime);
+            tvInvitationTime.setText(game.getTime());
+
+            dialog.show();
         }
     }
 }

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,6 +18,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.sql.Time;
@@ -71,7 +73,7 @@ public class EventActivity extends AppCompatActivity implements View.OnClickList
             DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
                 @Override
                 public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                    Date = day + "/" + month + "/" + year;
+                    Date = day + "/" + (month + 1) + "/" + year;
                     btnDate.setText(Date);
                 }
             }, year, month, day);
@@ -97,21 +99,16 @@ public class EventActivity extends AppCompatActivity implements View.OnClickList
                     && edContact.getText() != null && !edContact.getText().toString().equals("")
                     && edPhone.getText() != null && !edPhone.getText().toString().equals("")) {
                 String place = etPlace.getText().toString();
-                rbField.
-                String time = edTime.getText().toString();
                 int num_players = Integer.parseInt(edNum_Players.getText().toString());
                 String name = edContact.getText().toString();
                 String phone = edPhone.getText().toString();
-                boolean has_started = false;
-
-                if (checkBox.isChecked())
-                    has_started = true;
+                boolean court = rbCourt.isChecked();
 
                 String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-                Game p = new Game(uid, game, place, court, time, num_players, name, phone, "", has_started);
-                postRef = firebaseDatabase.getReference("Games").push();
-                p.key = postRef.getKey();
+                Game p = new Game(uid, GameType, place, court, Time, num_players, name, phone);
+                DatabaseReference postRef = firebaseDatabase.getReference("Games").push();
+                p.setKey(postRef.getKey());
                 postRef.setValue(p);
 
                 if (postRef.setValue(p).isSuccessful())
@@ -121,15 +118,7 @@ public class EventActivity extends AppCompatActivity implements View.OnClickList
                 else {
 
                     Toast.makeText(getApplicationContext(), "Upload Successful" ,Toast.LENGTH_SHORT).show();
-                    Reminder();
-                    Intent i = new Intent(getApplicationContext(), List_Game.class);
-//                        i.putExtra("game", game);
-//                        i.putExtra("place", place);
-//                        i.putExtra("court", court);
-//                        i.putExtra("time", time);
-//                        i.putExtra("num_players", num_players);
-//                        i.putExtra("name", name);
-//                        i.putExtra("phone", phone);
+                    Intent i = new Intent(getApplicationContext(), GameList.class);
                     i.putExtra("UserID", uid);
                     startActivity(i);
                 }

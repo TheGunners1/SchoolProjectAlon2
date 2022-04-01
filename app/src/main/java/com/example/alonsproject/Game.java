@@ -1,16 +1,20 @@
 package com.example.alonsproject;
 
+import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 public class Game {
     public int num_players;
-    public String place, court, time, name, phone, uid, key, gameType;
-    public boolean has_started;
-    private Bitmap bitmap;
+    public String place, time, name, phone, uid, key, gameType;
+    boolean court;
 
+    public Game() {
 
-    public Game(String uid, String type, String place, String court, String time, int num_players,
-                String name, String phone, String key, boolean has_started, Bitmap bitmap) {
+    }
+
+    public Game(String uid, String type, String place, boolean court, String time, int num_players,
+                String name, String phone) {
 
         this.uid = uid;
         this.place = place;
@@ -19,19 +23,8 @@ public class Game {
         this.num_players=num_players;
         this.name=name;
         this.phone=phone;
-        this.key = key;
-        this.has_started = has_started;
         this.gameType = type;
-        this.bitmap = bitmap;
     }
-    public boolean isHas_started() {
-        return has_started;
-    }
-
-    public void setHas_started(boolean has_started) {
-        this.has_started = has_started;
-    }
-
     public String getPlace() {
         return place;
     }
@@ -40,11 +33,11 @@ public class Game {
         this.place = place;
     }
 
-    public String getCourt() {
+    public boolean getCourt() {
         return court;
     }
 
-    public void setCourt(String court) {
+    public void setCourt(boolean court) {
         this.court = court;
     }
 
@@ -99,6 +92,18 @@ public class Game {
 
     public String getGameType() { return gameType; }
     public void setGameType(String type) { this.gameType = type; }
-    public Bitmap getBitmap() { return bitmap; }
-    public void setBitmap(Bitmap bitmap) { this.bitmap = bitmap; }
+    public Bitmap getBitmap(Resources resources) {
+        switch(this.gameType) {
+            case "Basketball":
+                return BitmapFactory.decodeResource(resources, R.drawable.basketball);
+            case "Football":
+                return BitmapFactory.decodeResource(resources, R.drawable.football);
+            case "Tennis":
+                return BitmapFactory.decodeResource(resources, R.drawable.tennis);
+            case "Volleyball":
+                return BitmapFactory.decodeResource(resources, R.drawable.volleyball);
+            default:
+                return null;
+        }
+    }
 }

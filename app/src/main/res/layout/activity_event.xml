@@ -87,7 +87,7 @@
         <Button
             android:id="@+id/btnDate"
             android:layout_width="150dp"
-            android:layout_height="wrap_content"
+            android:layout_height="75dp"
             android:layout_marginLeft="18dp"
             android:layout_marginRight="18dp"
             android:layout_marginBottom="1dp"
@@ -97,7 +97,7 @@
         <Button
             android:id="@+id/btnTime"
             android:layout_width="150dp"
-            android:layout_height="wrap_content"
+            android:layout_height="75dp"
             android:layout_marginLeft="18dp"
             android:layout_marginRight="18dp"
             android:layout_marginBottom="1dp"
@@ -106,31 +106,39 @@
             android:background="#FFFFFF"/>
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/edNum_Players"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Players"
-        android:textStyle="bold"
-        android:layout_gravity="center"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/edNum_Players"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="30dp"
+            android:hint="Players"
+            android:textStyle="bold"
+            android:layout_gravity="center"/>
 
-    <EditText
-        android:id="@+id/edContact"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:hint="Name"
-        android:textStyle="bold"
-        android:layout_gravity="center"/>
+        <EditText
+            android:id="@+id/edContact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="40dp"
+            android:hint="Name"
+            android:textStyle="bold"
+            android:layout_gravity="center"/>
 
-    <EditText
-        android:id="@+id/edPhone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:hint="Phone Number"
-        android:textStyle="bold"
-        android:layout_gravity="center"/>
+        <EditText
+            android:id="@+id/edPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="40dp"
+            android:hint="Phone Number"
+            android:textStyle="bold"
+            android:layout_gravity="center"/>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -145,7 +153,6 @@
             android:layout_gravity="center"
             android:text="Back"
             android:textSize="20dp"
-            android:height="60dp"
             android:textStyle="bold"
             android:background="#F7070F"/>
 
@@ -154,8 +161,6 @@
             android:layout_marginLeft="35dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:width="30dp"
-            android:height="60dp"
             android:layout_gravity="center"
             android:text="Done"
             android:textSize="20dp"

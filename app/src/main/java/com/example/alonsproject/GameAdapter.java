@@ -37,7 +37,7 @@ public class GameAdapter extends ArrayAdapter<Game> {
         tvGameType.setText(temp.getGameType());
         tvPlace.setText(String.valueOf(temp.getPlace()));
         tvTime.setText(temp.getTime());
-        ivImg.setImageBitmap(temp.getBitmap());
+        ivImg.setImageBitmap(temp.getBitmap(parent.getResources()));
         return view;
     }
 
