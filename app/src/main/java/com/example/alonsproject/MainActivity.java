@@ -3,13 +3,9 @@ package com.example.alonsproject;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,7 +22,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private FirebaseAuth mAuth;
     FirebaseUser currentUser;
-    EditText etFirstName, etLastName,etUsernameS, etEmail, etPasswordS;
+    EditText etFirstName, etLastName, etPhoneNumber, etEmail, etPasswordS;
     Button btnSignUp, btnAddImage, btnLogInS;
     ImageView ivImage;
     ProgressDialog progressDialog;
@@ -36,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         etFirstName = findViewById(R.id.etFirstName);
         etLastName = findViewById(R.id.etLastName);
-        etUsernameS= findViewById(R.id.etUserNameS);
+        etPhoneNumber = findViewById(R.id.etPhoneNumber);
         etEmail = findViewById(R.id.etEmail);
         etPasswordS = findViewById( R.id.etPasswordS);
         btnAddImage = findViewById(R.id.btnAddImage);
@@ -96,6 +92,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Intent gameListIntent = new Intent(MainActivity.this, GameList.class);
             startActivity(gameListIntent);
         }
+
 
     }//end onStart
 }

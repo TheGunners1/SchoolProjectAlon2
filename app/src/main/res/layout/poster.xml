@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Poster"
     android:orientation="vertical"
     android:background="#DCDCDD">
 
@@ -67,22 +66,33 @@
             android:text="()"
             android:textSize="50dp"/>
 
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
         <ImageButton
             android:id="@+id/btnCall"
             android:layout_marginTop="20dp"
-            android:layout_gravity="center"
-            android:layout_width="90dp"
+            android:layout_width="120dp"
             android:layout_height="90dp"
             app:srcCompat="@android:drawable/stat_sys_phone_call"
-            android:background="#099910"/>
+            android:background="#099910"
+            android:layout_marginLeft="40dp"/>
+        <Button
+            android:id="@+id/btnRegister"
+            android:layout_width="120dp"
+            android:layout_height="96dp"
+            android:text="register"
+            android:layout_marginLeft="75dp"
+            android:layout_marginTop="20dp"/>
+
+    </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Contact"
             android:textSize="35dp"
-            android:layout_gravity="center"/>
+            android:layout_marginLeft="40dp"/>
 
         <Button
             android:id="@+id/btnBack"

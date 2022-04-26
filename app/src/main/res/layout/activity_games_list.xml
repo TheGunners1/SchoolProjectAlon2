@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
-        android:text="Game Queue:"
+        android:text="Game Queue :"
         android:textAllCaps="true"
         android:textColor="@color/black"
         android:textSize="45sp"
@@ -44,7 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20dp"
-            android:text="Time"
+            android:text="Date"
             android:textColor="#000" />
     </LinearLayout>
 

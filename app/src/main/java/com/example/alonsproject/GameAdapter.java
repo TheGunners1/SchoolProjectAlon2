@@ -30,13 +30,13 @@ public class GameAdapter extends ArrayAdapter<Game> {
         TextView tvGameType = (TextView)view.findViewById(R.id.tvGameType);
         TextView tvPlace = (TextView)view.findViewById(R.id.tvPlace);
         ImageView ivImg=(ImageView)view.findViewById(R.id.ivImg);
-        TextView tvTime = (TextView)view.findViewById(R.id.tvTime);
+        TextView tvDate = (TextView)view.findViewById(R.id.tvDate);
 
         Game temp = objects.get(position);
 
         tvGameType.setText(temp.getGameType());
         tvPlace.setText(String.valueOf(temp.getPlace()));
-        tvTime.setText(temp.getTime());
+        tvDate.setText(temp.getDate());
         ivImg.setImageBitmap(temp.getBitmap(parent.getResources()));
         return view;
     }

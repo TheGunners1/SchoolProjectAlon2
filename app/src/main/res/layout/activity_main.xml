@@ -51,12 +51,12 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="   Userame"
+        android:text="   Phone Number"
         android:layout_marginTop="18dp"
         android:textSize="25sp"
         />
     <EditText
-        android:id="@+id/etUserNameS"
+        android:id="@+id/etPhoneNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="18dp"

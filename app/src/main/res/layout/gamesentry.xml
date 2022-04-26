@@ -11,11 +11,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:weightSum="3">
+        android:weightSum="3"
+        android:layout_marginLeft="10dp">
         <TextView
-            android:textAlignment="center"
             android:layout_gravity="center"
-            android:layout_weight="1"
+            android:layout_weight="0.75"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tvGameType"
@@ -38,7 +38,7 @@
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tvTime"
+            android:id="@+id/tvDate"
             android:textSize="20dp"
             android:text="00:00"
             android:textColor="#000" />
