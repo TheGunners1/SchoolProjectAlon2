@@ -7,9 +7,12 @@ import android.app.Dialog;
 import android.content.ClipData;
 import android.content.Intent;
 import android.net.Uri;
+import android.nfc.Tag;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -134,6 +137,7 @@ public class GameList extends AppCompatActivity implements View.OnClickListener,
         DatabaseReference gameRef = FirebaseDatabase.getInstance().getReference("Games").child(game.getKey());
         String uid = game.getUid();
 
+
         if(uid.equals(firebaseAuth.getUid()))
         {
             Dialog dialog = new Dialog(this);
@@ -142,6 +146,10 @@ public class GameList extends AppCompatActivity implements View.OnClickListener,
 
             Button btnUpdateGame = dialog.findViewById(R.id.btnUpdateGame);
             Button btnDeleteGame = dialog.findViewById(R.id.btnDeleteGame);
+            ListView PlayersList=dialog.findViewById(R.id.PlayersList);
+
+            PlayersList.setAdapter(new ArrayAdapter<String>(this,
+                    android.R.layout.simple_list_item_1,game.getPlayers()));
             btnDeleteGame.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -159,6 +167,7 @@ public class GameList extends AppCompatActivity implements View.OnClickListener,
                     startActivity(editGameIntent);
                 }
             });
+
             dialog.show();
         }
         else
@@ -194,7 +203,7 @@ public class GameList extends AppCompatActivity implements View.OnClickListener,
 
             Button btnRegister = dialog.findViewById(R.id.btnRegister);
             List<String> players = game.getPlayers();
-            Boolean leave = players.contains(firebaseAuth.getUid());
+            Boolean leave = players.contains(firebaseAuth.getCurrentUser().getEmail());
             if(leave) {
                 btnRegister.setText("Leave");
             }
@@ -205,9 +214,9 @@ public class GameList extends AppCompatActivity implements View.OnClickListener,
                 @Override
                 public void onClick(View v) {
                     if(leave) {
-                        players.remove(firebaseAuth.getUid());
+                        players.remove(firebaseAuth.getCurrentUser().getEmail());
                     } else {
-                        players.add(firebaseAuth.getUid());
+                        players.add(firebaseAuth.getCurrentUser().getEmail());
                     }
                     gameRef.setValue(game);
 

@@ -42,6 +42,27 @@
             android:textSize="25dp"
             android:textStyle="bold" />
 
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Registred Players :"
+            android:background="@android:color/background_light">
+        </EditText>
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="400dp"
+            android:id="@+id/PlayersList">
+        </ListView>
     </LinearLayout>
 
 

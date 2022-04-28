@@ -19,7 +19,7 @@ public class Game {
     }
 
     public Game(String uid, String type, String place, boolean court, String date, int Date_In_Numbers, String time, int num_players,
-                String name, String phone) {
+                String name, String phone, String email) {
         this.uid = uid;
         this.place = place;
         this.court = court;
@@ -28,7 +28,7 @@ public class Game {
         this.time = time;
         this.num_players = num_players;
         this.players = new ArrayList<String>();
-        this.players.add(uid);
+        this.players.add(email);
         this.name = name;
         this.phone = phone;
         this.gameType = type;

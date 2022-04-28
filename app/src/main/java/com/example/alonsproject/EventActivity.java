@@ -177,9 +177,10 @@ public class EventActivity extends AppCompatActivity implements View.OnClickList
                     return;
                 }
 
-                String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                String email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
 
-                Game p = new Game(uid, GameType, place, court, Date, Date_In_Numbers, Time, num_players, name, phone);
+                Game p = new Game(firebaseAuth.getUid(), GameType, place, court, Date,
+                        Date_In_Numbers, Time, num_players, name, phone, email);
                 DatabaseReference postRef;
                 if(originGame != null)
                     postRef = originGame;
@@ -192,7 +193,7 @@ public class EventActivity extends AppCompatActivity implements View.OnClickList
                     public void onSuccess(Void unused) {
                         Toast.makeText(getApplicationContext(), "Upload Successful" ,Toast.LENGTH_SHORT).show();
                         Intent i = new Intent(getApplicationContext(), GameList.class);
-                        i.putExtra("UserID", uid);
+                        i.putExtra("UserID", firebaseAuth.getUid());
                         startActivity(i);
                     }
                 }).addOnFailureListener(new OnFailureListener() {
