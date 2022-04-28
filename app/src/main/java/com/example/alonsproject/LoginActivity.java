@@ -7,9 +7,11 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +26,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     EditText etUsernameL, etPasswordL;
     FirebaseAuth firebaseAuth;
     Button btnLoginL;
+    TextView tvResetPassword, tvHaveNoAcount;
     ProgressDialog progressDialog;
 
 
@@ -33,10 +36,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_login);
         etUsernameL=findViewById(R.id.etUserNameL);
         etPasswordL=findViewById(R.id.etPasswordL);
+        tvResetPassword=findViewById(R.id.tvResetPassword);
+        tvHaveNoAcount=findViewById(R.id.tvHaveNoAcount);
         btnLoginL=findViewById(R.id.btnLogInL);
+
         firebaseAuth = FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(this);
 
+        tvHaveNoAcount.setOnClickListener(this);
+        tvResetPassword.setOnClickListener(this);
         btnLoginL.setOnClickListener(this);
     }
 
@@ -62,6 +70,32 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             }
                         });
                 break;
+            case R.id.tvHaveNoAcount:
+                Intent signUpIntetnt = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(signUpIntetnt);
+            case  R.id.tvResetPassword:
+                resetPassword();
         }
     }// end login()
+
+    public void resetPassword() {
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        String email_address = etUsernameL.getText().toString();
+        if (!TextUtils.isEmpty(email_address)){
+            auth.sendPasswordResetEmail(email_address).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(getApplicationContext(), "Check Your Email", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
+        else{
+            Toast.makeText(getApplicationContext(), "enter email",Toast.LENGTH_SHORT).show();
+        }
+    }
 }

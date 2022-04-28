@@ -18,7 +18,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="   Email"
+        android:text="   Userame"
         android:layout_marginTop="50dp"
         android:textSize="35sp"
         />
@@ -45,6 +45,12 @@
         android:layout_marginRight="18dp"
         android:layout_marginBottom="1dp"
         android:background="#FFFFFF"/>
+    <TextView
+        android:id="@+id/tvResetPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Forget your password?"
+        android:layout_marginLeft="18dp"/>
     <Button
         android:id="@+id/btnLogInL"
         android:layout_width="match_parent"
@@ -52,4 +58,10 @@
         android:text="Login"
         android:textSize="25sp"
         android:layout_marginTop="30dp"/>
+    <TextView
+        android:id="@+id/tvHaveNoAcount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Don't have an acount yet? Sign up here"
+        android:layout_marginLeft="18dp"/>
 </LinearLayout>
