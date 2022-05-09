@@ -2,8 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/itemChangeUser"
-        android:title="create a new game"
+        android:id="@+id/itemPlayASong"
+        android:title="play a song"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/itemstopsong"
+        android:title="stop the song"
         app:showAsAction="never"/>
     <item
         android:id="@+id/itemLogOut"

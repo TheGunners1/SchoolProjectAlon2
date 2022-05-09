@@ -102,8 +102,11 @@ public class GameList extends AppCompatActivity implements View.OnClickListener,
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId())
         {
-            case R.id.itemChangeUser:
-                onClick(btnNewGame);
+            case R.id.itemPlayASong:
+                startService(new Intent(this, Song.class));
+                break;
+            case R.id.itemstopsong:
+                stopService(new Intent(this, Song.class));
                 break;
 
             case R.id.itemLogOut:
